@@ -12,6 +12,7 @@ import { setFilters } from "@/state";
 const HeroSection = () => {
   const dispatch = useDispatch();
   const [searchQuery, setSearchQuery] = useState("");
+  const [searchColor, setSearchColor] = useState("bg-secondary-600");
   const router = useRouter();
 
   const handleLocationSearch = async () => {
@@ -76,13 +77,16 @@ const HeroSection = () => {
             <Input
               type="text"
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(e) => {
+                setSearchColor('bg-secondary-600')
+                setSearchQuery(e.target.value)
+              }}
               placeholder="Search by city, neighborhood or address"
               className="w-full max-w-lg rounded-none rounded-l-xl border-none bg-white h-12"
             />
             <Button
               onClick={handleLocationSearch}
-              className="bg-secondary-500 text-white rounded-none rounded-r-xl border-none hover:bg-secondary-600 h-12"
+              className={`bg-secondary-500 text-white rounded-none rounded-r-xl border-none hover:${searchColor} h-12`}
             >
               Search
             </Button>
